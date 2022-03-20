@@ -363,6 +363,79 @@ public class ListaEnlazadaGenericaTest {
 			
 			assertEquals(1,lista.tamanio());
 			
+			lista.agregarFinal(222);
+			lista.agregarFinal(333);
+			lista.agregarFinal(444);
+			lista.agregarFinal(555);
+			lista.agregarFinal(566);
+			lista.agregarFinal(777);
+			
+			
+			int tamanio2 = lista.tamanio();
+			for (int i=1; i<= tamanio2; i++)
+				assertTrue(lista.eliminarEn(1));
+			
+			assertTrue(lista.esVacia());
+			
+			assertEquals(0,lista.tamanio());
+			
+			
+			lista.agregarFinal(22);
+			lista.agregarFinal(33);
+			lista.agregarFinal(44);
+			lista.agregarFinal(55);
+			lista.agregarFinal(66);
+			lista.agregarFinal(77);
+			
+			assertFalse(lista.esVacia());
+			
+			
+			while (!lista.esVacia()) {
+				assertTrue(lista.eliminarEn(lista.tamanio()));
+			}
+			
+			assertTrue(lista.esVacia());
+			
+			assertEquals(0,lista.tamanio());
+			
+			
+			lista.agregarFinal(22);
+			lista.agregarFinal(33);
+			lista.agregarFinal(44);
+			lista.agregarFinal(55);
+			lista.agregarFinal(66);
+			lista.agregarFinal(77);
+			
+			assertFalse(lista.esVacia());
+			
+			
+			while (!lista.esVacia()) {
+				assertTrue(lista.eliminarEn(1));
+			}
+			
+			assertTrue(lista.esVacia());
+			
+			assertEquals(0,lista.tamanio());
+			
+			
+			lista.agregarFinal(22);
+			lista.agregarFinal(33);
+			lista.agregarFinal(44);
+			lista.agregarFinal(55);
+			lista.agregarFinal(66);
+			lista.agregarFinal(77);
+			
+			assertFalse(lista.esVacia());
+			
+			
+			while (!lista.esVacia()) {
+				assertTrue(lista.eliminarEn(lista.tamanio()));
+			}
+			
+			assertTrue(lista.esVacia());
+			
+			assertEquals(0,lista.tamanio());
+			
 			
 		}
 		
@@ -417,6 +490,27 @@ public class ListaEnlazadaGenericaTest {
 			lista.reemplazarEn(new Integer(999), new Integer(lista.tamanio()));
 			
 			assertEquals(new Integer(999), lista.elemento(lista.tamanio()));
+		}
+		
+		@Test
+		public void testEliminarActual() {
+			lista.agregarFinal(2);
+			lista.agregarFinal(3);
+			lista.agregarFinal(4);
+			lista.agregarFinal(5);
+			lista.agregarFinal(6);
+			lista.agregarFinal(7);
+			
+			lista.comenzar();
+			lista.proximo();// el actual se posiciona en el numero 3
+			
+			lista.eliminarEn(2);// elimino el numero 3
+			
+			assertEquals(new Integer(4), lista.proximo()); // el proximo ahora es el numero 5
+			
+			lista.eliminar(5);
+			assertEquals(new Integer(6), lista.proximo());
+			
 		}
 
 }

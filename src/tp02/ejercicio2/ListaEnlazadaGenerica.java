@@ -126,8 +126,11 @@ public class ListaEnlazadaGenerica<T> extends ListaGenerica<T> {
 			if (ant == null) {
 				this.inicio = this.inicio.getSiguiente();
 				this.fin = this.inicio;
-			}else
+			}else {
 				ant.setSiguiente(n.getSiguiente());
+				if (actual==n)
+					actual = n.getSiguiente();
+			}
 			this.tamanio--;
 
 			return true;
@@ -151,6 +154,10 @@ public class ListaEnlazadaGenerica<T> extends ListaGenerica<T> {
 			n = n.getSiguiente();
 		}
 		ant.setSiguiente(n.getSiguiente());
+		
+		if (actual==n)
+			actual = n.getSiguiente();
+		
 		if (ant.getSiguiente() == null)
 			this.fin = ant;
 		return true;
@@ -211,6 +218,17 @@ public class ListaEnlazadaGenerica<T> extends ListaGenerica<T> {
 		}
 		this.actual = punteroPrevio;
 		return nueva;
+	}
+	
+	public boolean equals(Object o) {
+		if (this==o)
+			return true;
+		ListaEnlazadaGenerica<T> lista = (ListaEnlazadaGenerica<T>) o;
+		for (int i=1; i<= lista.tamanio(); i++) {
+			if (!lista.elemento(i).equals(this.elemento(i)))
+				return false;
+		}
+		return true;
 	}
 
 }
